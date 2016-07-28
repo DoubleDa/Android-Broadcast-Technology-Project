@@ -156,6 +156,30 @@ MediaRecorder可以通过**setVideoSource**方法设置视频源，两种：一�
 
 摄像头采集的视频数据格式是**N21**和**YV12**，但是编码器MediaCodec处理的数据格式是Y420P和Y420SP的，所以这里需要做一次数据格式的转化，同样如果想采集摄像头的每一帧图片做处理的话，还需要把N21格式转化成RGB格式。
 
+![](https://github.com/DoubleDa/Android-Broadcast-Technology-Project/blob/master/images/Camera%E7%9B%B8%E5%85%B3.png?raw=true)
+
+
+4.视频预览View
+
+a.这里主要有SurfaceView类型，他主要和SurfaceHolder，Surface相关联，摄像头提供了setPreviewDisplay方法设置SurfaceHolder类型。摄像头可以通过SurfaceView进行数据的预览，录制屏幕VirtualDisplay可以提供一个设置Surface入口，所以录制屏幕也可以通过SurfaceView进行数据的预览。
+
+b.还有就是TextureView类型，他主要和SurfaceTexture类相对应的，而摄像头提供了一个setPreviewTexture方法来设置SurfaceTexture类型，但是录制屏幕的VirtualDisplay没有，所以摄像头可以通过TextureView进行数据预览，但是录制屏幕不可以。
+
+c.最后就是GLSurfaceView类型了，他是继承SurfaceView的，在这基础上添加了OpenGL技术，用来处理视频数据和图片数据的。但是GLSurfaceView和前面两个预览View不同的是，他需要拿到数据自己进行渲染预览，大致流程如下：
+
+GLSurfaceView->setRender->onSurfaceCreated回调方法中构造一个SurfaceTexture对象，然后设置到Camera预览中->SurfaceTexture中的回调方法onFrameAvailable来得知一帧的数据准备好了->requestRender通知Render来绘制数据->在Render的回调方法onDrawFrame中调用SurfaceTexture的updateTexImage方法获取一帧数据，然后开始使用GL来进行绘制预览。
+
+
+* 使用场景
+
+**场景一：从摄像头采集视频数据保存到本地**
+
+方法一：
+Camera->setPreviewCallback->onPreviewFrame->获取没帧数据(N21)->转化数据格式为Y420SP->给MediaCodec->编码生成H264格式的视频流保存到本地
+
+
+
+
 
 
 
