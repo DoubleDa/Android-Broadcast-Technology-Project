@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Android-Broadcast-Technology-Project</string>
+    <string name="but1_str">调用其自带的播放器</string>
+    <string name="but2_str">使用VideoView来实现</string>
+    <string name="but3_str">使用MediaPlayer实现</string>
 </resources>
