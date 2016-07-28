@@ -175,7 +175,16 @@ GLSurfaceView->setRender->onSurfaceCreated回调方法中构造一个SurfaceText
 **场景一：从摄像头采集视频数据保存到本地**
 
 方法一：
-Camera->setPreviewCallback->onPreviewFrame->获取没帧数据(N21)->转化数据格式为Y420SP->给MediaCodec->编码生成H264格式的视频流保存到本地
+
+![](https://github.com/DoubleDa/Android-Broadcast-Technology-Project/blob/master/images/Camera%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86.png?raw=true)
+
+方法二：
+
+设置MediaRecorder的视频源为Camera即可，但是这个过程中获取不到摄像头的没帧数据，做不了处理了。
+
+**场景二：录制屏幕视频数据保存到本地**
+
+
 
 
 
