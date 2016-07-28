@@ -184,6 +184,35 @@ GLSurfaceView->setRender->onSurfaceCreated回调方法中构造一个SurfaceText
 
 **场景二：录制屏幕视频数据保存到本地**
 
+![](https://github.com/DoubleDa/Android-Broadcast-Technology-Project/blob/master/images/%E5%BD%95%E5%88%B6%E5%B1%8F%E5%B9%95%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E5%88%B0%E6%9C%AC%E5%9C%B0.png?raw=true)
+
+**场景三：从摄像头中采集数据做每一帧数据处理获取图片**
+
+方法一：
+
+使用YUVImage类，将N21/YV12格式变成一个Bitmap数据
+
+方法二：
+
+获取每帧数据，将N21/YV12数据格式转化成ARGB8888格式数据，然后产生图片
+
+方法三：
+
+调用Camera的回调接口PictureCallback中的回调方法 onPictureTaken(byte[] data, final Camera camera)直接获取的data数据就是图片格式数据
+
+
+**场景四：录制屏幕时获取一张图片(屏幕截图功能)**
+
+![]()
+
+**场景五：对采集的视频和图片做滤镜效果**
+
+我们通过Camera的回调方法onPreviewFrame(byte[] data…)来获取视频流中每一帧数据，然后借助强大的OpenGL技术来进行数据处理，做到类似于美颜相机功能
+
+**场景六：扫描二维码技术解析**
+
+可以借助Camera，获取每一帧数据，然后进行二维码的识别。
+
 
 
 
